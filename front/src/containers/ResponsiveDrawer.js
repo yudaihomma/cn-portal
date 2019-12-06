@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
+import EventIcon from '@material-ui/icons/Event';
 
 
 // Route関連
@@ -119,6 +120,12 @@ class ResponsiveDrawer extends React.Component {
             onClick={this.closeDrawerNav}
             icon={<HomeIcon />}
             text="トップページ"
+          />
+          <ResponsiveDrawerListItem
+            to="/PracticeSchedule"
+            onClick={this.closeDrawerNav}
+            icon={<EventIcon />}
+            text="練習スケジュール"
           />
           <ResponsiveDrawerListItem
             to="/settings"

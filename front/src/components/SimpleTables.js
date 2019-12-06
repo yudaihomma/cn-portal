@@ -43,13 +43,14 @@ const rows = [
   createData('2/16（日）', '関東', '10-22'),
   createData('2/16（日）', '関西', ''),
   createData('2/16（日）', '東海', ''),
-  
+
 ];
 
 export default function SimpleTable() {
   const classes = useStyles();
 
   return (
+    
     <Paper className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>

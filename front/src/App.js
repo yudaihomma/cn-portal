@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home';
+import PracticeSchedule from './containers/PracticeSchedule';
 
+import './react_dates_overrides.css'
 // Route関連
 import { Route, Switch } from 'react-router-dom';
 
@@ -27,7 +29,7 @@ class App extends Component {
         <ResponsiveDrawer className="ResponsiveDrawer">
           <Switch>
             <Route exact path="/" component={WrapMainContent(Home)}/>
-            {/* <Route exact path="/info" component={WrapMainContent(Info)}/> */}
+            <Route exact path="/PracticeSchedule" component={WrapMainContent(PracticeSchedule)}/>
             {/* <Route exact path="/settings" component={WrapMainContent(Settings)}/> */}
             <Route component={WrapMainContent(NotFound)}/>
           </Switch>

@@ -1,0 +1,30 @@
+.CalendarDay {
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  padding: 5px;
+}
+
+.CalendarDay__blocked_calendar,
+.CalendarDay__blocked_calendar:active,
+.CalendarDay__blocked_calendar:hover {
+  background :#dbdbdb;
+  border: 1px solid light-red;
+}
+
+.CalendarDay__selected {
+  background: dark-red;
+  color: white;
+}
+
+.CalendarDay__selected:hover {
+  background: orange;
+  color: white;
+}
+
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  background: brown;
+}
