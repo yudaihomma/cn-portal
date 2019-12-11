@@ -12,6 +12,7 @@
 .CalendarDay__blocked_calendar:hover {
   background :#dbdbdb;
   border: 1px solid light-red;
+  cursor: default;
 }
 
 .CalendarDay__selected {

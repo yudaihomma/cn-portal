@@ -12,13 +12,26 @@ import indigo from '@material-ui/core/colors/indigo';
 // Redux関連
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-// import reducers from './reducers';
+import reducers from './reducers';
 
 // Router関連
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // Redux-Thunk関連（非同期データ取得用）
 import thunk from 'redux-thunk'
+import { orange, grey } from '@material-ui/core/colors';
+
+
+// Redux設定
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // Chromeのデバック用
+const composeEnhancers = compose; // 本番用
+const store = createStore(
+  reducers,
+  composeEnhancers(
+    applyMiddleware(thunk),
+  )
+);
+
 
 // Material-UIテーマカスタマイズ
 const theme = createMuiTheme({
@@ -26,17 +39,19 @@ const theme = createMuiTheme({
       type: 'light', // light or dark
       primary: indigo, // primaryのカラー
       secondary: red, // secondaryのカラー
+      inherit: orange,
+      default: grey,
     },
   });
 
 ReactDOM.render(
-    // <Provider store={store}>
+    <Provider store={store}>
       <MuiThemeProvider theme={theme} >
         <Router>
           <App/>
         </Router>
       </MuiThemeProvider>
-    // </Provider>
+    </Provider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
