@@ -14,7 +14,7 @@
   border: 1px solid light-red;
   cursor: default;
 }
-
+/* 
 .CalendarDay__selected {
   background: dark-red;
   color: white;
@@ -28,4 +28,4 @@
 .CalendarDay__hovered_span:hover,
 .CalendarDay__hovered_span {
   background: brown;
-}
+} */

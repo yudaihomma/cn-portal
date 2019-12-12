@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import mockdata from './mockdata.json';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DayPickerRangeController } from 'react-dates';
 
 import { withStyles } from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import Chip from '@material-ui/core/Chip';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,6 +13,7 @@ import * as actions from '../actions';
 import MediaQuery from "react-responsive";
 
 import PracticeCalendar from './PracticeCalendar'
+import PracticeCalendarMobile from './PracticeCalendarMobile'
 
 import moment from 'moment';
 moment.locale('ja');
@@ -38,21 +35,18 @@ const styles = theme => ({
 
 class PracticeSchedule extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      date: ''
-    };
-  }
-
   render() {
     // Material-ui関連
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
-        <PracticeCalendar/>
+        <MediaQuery query="(max-width: 767px)">
+          <PracticeCalendarMobile/>
+        </MediaQuery>
+        <MediaQuery query="(min-width: 767px)">
+          <PracticeCalendar/>
+        </MediaQuery>
       </div>
     );
   }

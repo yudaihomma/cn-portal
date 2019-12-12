@@ -9,13 +9,12 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerSingleDateController } from 'react-dates';
 
 import { withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
-import {CalendarDay} from '../components/CalendarDay';
+import {CalendarDayMobile} from '../components/CalendarDay';
 
 import moment from 'moment';
 moment.locale('ja');
@@ -34,12 +33,13 @@ const styles = theme => ({
     }
   });
 
-class PracticeCalendar extends React.Component {
+
+class PracticeCalendarMobile extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      date: '',
+      date: ''
     };
   }
 
@@ -49,11 +49,12 @@ class PracticeCalendar extends React.Component {
     return false
   }
 
-  // 出席状況を描画(PC)
-  isDayCustom = momentDate => {
-    let isPractice
+  // 出席状況を描画(モバイル)
+  isDayCustomMobile = momentDate => {
     const { classes } = this.props;
-    let chips = []
+    let isPractice
+    let color
+    let badgeClass
 
     if (mockdata.practice_attend.some(pa => pa.practice_day === momentDate.format('D'))) {
       isPractice = true
@@ -61,49 +62,37 @@ class PracticeCalendar extends React.Component {
       isPractice = false
     }
 
-    mockdata.practice_attend.filter(pa => pa.practice_day === momentDate.format('D')).forEach(at => {
-      let color
-      if (at.status === "1") {
-        color = "primary"
-      }
-      else {
-        color = "default"
-      }
-
-      chips.push(
-      <Chip
-        className={classes.labels}
-        size="small"
-        label={at.attend_time}
-        color={color}
-      />)
-    });
-    return (
-      <CalendarDay
-        momentDate={momentDate.format('D')}
-        isPractice={isPractice}
-        chips={chips}
-      />)
+    if (mockdata.practice_attend.filter(pa => pa.practice_day === momentDate.format('D')).some(pa => pa.status === "1")) {
+      color = "primary"
+    } else {
+      badgeClass = classes.customBadge
     }
+    return (
+          <CalendarDayMobile
+          momentDate={momentDate.format('D')}
+          isPractice={isPractice}
+          color={color}
+          classes={{badge: badgeClass}}
+          />)
+  }
 
   render() {
     // Material-ui関連
     const { classes } = this.props;
 
     return (
-
-      <DayPickerSingleDateController
-        date={this.state.date}
-        onDateChange={ date => this.setState({date: date})}
-        focused={this.state.focused}
-        onFocusChange={({ focused }) => this.setState({ focused })}
-        numberOfMonths={1}
-        daySize={95}
-        isDayBlocked={this.isDayBlocked}
-        renderDayContents={this.isDayCustom}
-        monthFormat="YYYY[年]MM[月]"
-        displayFormat='YYYY-MM-DD'
-      />
+        <DayPickerSingleDateController
+          date={this.state.date}
+          onDateChange={ date => this.setState({date: date})}
+          focused={this.state.focused}
+          onFocusChange={({ focused }) => this.setState({ focused })}
+          numberOfMonths={1}
+          daySize={40}
+          isDayBlocked={this.isDayBlocked}
+          renderDayContents={this.isDayCustomMobile}
+          monthFormat="YYYY[年]MM[月]"
+          displayFormat='YYYY-MM-DD'
+        />
     );
   }
 }
@@ -118,12 +107,13 @@ function mapDispatch(dispatch) {
 
 // Material-uiのテーマ設定＋Redux設定
 export default connect(mapState, mapDispatch)(
-  withStyles(styles, { withTheme: true })(PracticeCalendar)
+  withStyles(styles, { withTheme: true })(PracticeCalendarMobile)
 );
 
 
+
 // Material-ui関連
-PracticeCalendar.propTypes = {
+PracticeCalendarMobile.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
