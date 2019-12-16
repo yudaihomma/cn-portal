@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 import MediaQuery from "react-responsive";
 

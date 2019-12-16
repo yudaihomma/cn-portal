@@ -41,10 +41,10 @@ export function CalendarDayMobile(props) {
 };
 
 export function CalendarDay(props) {
-    const { momentDate, chips, isPractice} = props;
+    const { momentDate, chips, isPractice, clickEvent} = props;
     if (isPractice) {
         return (
-        <div>
+        <div onClick={clickEvent}>
           <div style={{position:"absolute", top:"3px", left: 0, right: 0,}}>
           {momentDate}
           </div>

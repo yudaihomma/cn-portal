@@ -1,9 +1,7 @@
-
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import mockdata from './mockdata.json';
+import mockdata from '../mockdata.json';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerSingleDateController } from 'react-dates';
@@ -12,9 +10,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
-import {CalendarDayMobile} from '../components/CalendarDay';
+import {CalendarDayMobile} from '../../components/CalendarDay';
 
 import moment from 'moment';
 moment.locale('ja');

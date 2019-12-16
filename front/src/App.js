@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home';
-import PracticeSchedule from './containers/PracticeSchedule';
+import PracticeSchedule from './containers/PracticeSchedule/PracticeSchedule';
 
 import './react_dates_overrides.css'
 // Route関連
