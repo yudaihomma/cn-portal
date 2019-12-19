@@ -3,20 +3,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import mockdata from '../mockdata.json';
+import mockdata from '../../mockdata.json';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerSingleDateController } from 'react-dates';
 
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import Popover from "react-popover";
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 
-import {CalendarDay} from '../../components/CalendarDay';
+import {CalendarDay} from '../../../components/CalendarDay';
 
 import moment from 'moment';
 moment.locale('ja');
@@ -43,10 +42,6 @@ class PracticeCalendar extends React.Component {
       date: '',
     };
   }
-
-  clickEvent = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
 
   // 練習日ではない日をdisabled
   isDayBlocked = momentDate => {
@@ -76,29 +71,24 @@ class PracticeCalendar extends React.Component {
       }
 
       chips.push(
-        <Popover
-          isOpen={this.state.isOpen}
-          body={<div className="Balloon">Popover Content</div>}
-      >
       <Chip
         className={classes.labels}
         size="small"
         label={at.attend_time}
         color={color}
-      />
-      </Popover>)
+      />)
     });
     return (
-        <CalendarDay
-          momentDate={momentDate.format('D')}
-          isPractice={isPractice}
-          chips={chips}
-          clickEvent={this.clickEvent}
-        />
-      )
+      <CalendarDay
+        momentDate={momentDate.format('D')}
+        isPractice={isPractice}
+        chips={chips}
+      />)
     }
 
   render() {
+    // Material-ui関連
+    const { classes } = this.props;
 
     return (
       <DayPickerSingleDateController

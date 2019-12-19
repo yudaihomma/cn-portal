@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import mockdata from '../mockdata.json';
+import mockdata from '../../mockdata.json';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerSingleDateController } from 'react-dates';
@@ -10,9 +10,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 
-import {CalendarDayMobile} from '../../components/CalendarDay';
+import {CalendarDayMobile} from '../../../components/CalendarDay';
+import EditCalendarMobile from './EditCalendarMobile';
 
 import moment from 'moment';
 moment.locale('ja');
@@ -28,18 +29,17 @@ const styles = theme => ({
     },
     customBadge: {
       backgroundColor: "#c1c1c1",
-    }
+    },
+    appBar: {
+      position: 'relative',
+    },
+    title: {
+      marginLeft: theme.spacing(2),
+      flex: 1,
+    },
   });
 
-
 class PracticeCalendarMobile extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      date: ''
-    };
-  }
 
   // 練習日ではない日をdisabled
   isDayBlocked = momentDate => {
@@ -75,15 +75,17 @@ class PracticeCalendarMobile extends React.Component {
   }
 
   render() {
+
+    // redux用
+    const { PracticeCalendarMobileReducer, actions } = this.props;
     // Material-ui関連
     const { classes } = this.props;
 
     return (
+      <div>
         <DayPickerSingleDateController
-          date={this.state.date}
-          onDateChange={ date => this.setState({date: date})}
-          focused={this.state.focused}
-          onFocusChange={({ focused }) => this.setState({ focused })}
+          date={PracticeCalendarMobileReducer.date}
+          onDateChange={actions.openEditCalendarMobile}
           numberOfMonths={1}
           daySize={40}
           isDayBlocked={this.isDayBlocked}
@@ -91,12 +93,16 @@ class PracticeCalendarMobile extends React.Component {
           monthFormat="YYYY[年]MM[月]"
           displayFormat='YYYY-MM-DD'
         />
+        <EditCalendarMobile />
+      </div>
     );
   }
 }
 
 const mapState = (state, ownProps) => ({
+  PracticeCalendarMobileReducer: state.PracticeCalendarMobileReducer,
 });
+
 function mapDispatch(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
@@ -107,7 +113,6 @@ function mapDispatch(dispatch) {
 export default connect(mapState, mapDispatch)(
   withStyles(styles, { withTheme: true })(PracticeCalendarMobile)
 );
-
 
 
 // Material-ui関連

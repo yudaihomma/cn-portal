@@ -11,6 +11,7 @@ const styles = {
     },
 }
 
+
 // 出席状況を描画(モバイル)
 export function CalendarDayMobile(props) {
     const { momentDate, isPractice, color, classes } = props;
