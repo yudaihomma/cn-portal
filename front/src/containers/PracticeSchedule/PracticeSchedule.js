@@ -12,8 +12,8 @@ import * as actions from '../../actions';
 
 import MediaQuery from "react-responsive";
 
-import PracticeCalendar from './PracticeCalendar'
-import PracticeCalendarMobile from './PracticeCalendarMobile'
+import PracticeCalendar from './desktop/PracticeCalendar'
+import PracticeCalendarMobile from './mobile/PracticeCalendarMobile'
 
 import moment from 'moment';
 moment.locale('ja');
@@ -64,9 +64,3 @@ function mapDispatch(dispatch) {
 export default connect(mapState, mapDispatch)(
   withStyles(styles, { withTheme: true })(PracticeSchedule)
 );
-
-// Material-ui関連
-PracticeSchedule.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};

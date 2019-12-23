@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
 import Home from './containers/Home';
 import PracticeSchedule from './containers/PracticeSchedule/PracticeSchedule';
@@ -21,7 +20,7 @@ const NotFound = () => {
   )
 }
 
-class App extends Component {
+class App extends React.Component {
 
   render() {
     return (

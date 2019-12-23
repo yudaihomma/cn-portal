@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -19,7 +19,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 // Redux-Thunk関連（非同期データ取得用）
 import thunk from 'redux-thunk'
-import { orange, grey } from '@material-ui/core/colors';
 
 
 // Redux設定
@@ -39,8 +38,6 @@ const theme = createMuiTheme({
       type: 'light', // light or dark
       primary: indigo, // primaryのカラー
       secondary: red, // secondaryのカラー
-      inherit: orange,
-      default: grey,
     },
   });
 

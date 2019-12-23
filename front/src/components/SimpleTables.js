@@ -50,7 +50,7 @@ export default function SimpleTable() {
   const classes = useStyles();
 
   return (
-    
+
     <Paper className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>

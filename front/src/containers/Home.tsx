@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -34,12 +33,6 @@ class Home extends React.Component {
     );
   }
 }
-
-// Material-ui関連
-Home.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
 
 // // Redux関連
 // const mapState = (state, ownProps) => ({
