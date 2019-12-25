@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeEditCalendarMobile } from '../../../actions';
 
-import EditCalendarDialogMobile from '../../../components/EditCalendarDialogMobile';
+import {GetPracticeCalendarMobileState} from '../../../selectors/PracticeCalendarMobileSelector'
+
+import {EditCalendarDialogMobile} from '../../../components/EditCalendarDialogMobile';
 
 // スタイル
-const styles = theme => ({
+const useStyles = makeStyles((theme: Theme) =>
+ createStyles({
   appBar: {
     position: 'relative',
   },
@@ -18,50 +20,36 @@ const styles = theme => ({
     marginLeft: theme.spacing(2),
     flex: 1,
   },
-});
+}));
 
-class EditCalendarMobile extends React.Component {
+export const EditCalendarMobile: React.FC = () =>  {
 
-  render() {
-    // redux用
-    const { PracticeCalendarMobileReducer, actions } = this.props;
-    // Material-ui関連
-    const { classes } = this.props;
+  const dispatch = useDispatch();
 
-    let stringDate
-    if (PracticeCalendarMobileReducer.date != "") {
-      stringDate = PracticeCalendarMobileReducer.date.format("YYYY/MM/DD")
-    }
+  const state = useSelector(GetPracticeCalendarMobileState);
 
-    return (
-      <EditCalendarDialogMobile 
-        classes={classes}
-        isOpen={PracticeCalendarMobileReducer.isOpen}
-        onClose={actions.closeEditCalendarMobile}
-        date={stringDate}
-    />
-    );
+  const classes = useStyles();
+
+  let stringDate
+  if (state.date) {
+    stringDate = state.date.format("YYYY/MM/DD")
   }
+
+  return (
+    <EditCalendarDialogMobile
+      classes={classes}
+      isOpen={state.isOpen}
+      onClose={() => dispatch(closeEditCalendarMobile(state))}
+      date={stringDate}
+  />
+  );
 }
 
-const mapState = (state, ownProps) => ({
-  PracticeCalendarMobileReducer: state.PracticeCalendarMobileReducer,
-});
 
-function mapDispatch(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch),
-  };
-}
 
 EditCalendarMobile.propTypes = {
   date: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   classes: PropTypes.object,
 };
-
-// Material-uiのテーマ設定＋Redux設定
-export default connect(mapState, mapDispatch)(
-  withStyles(styles, { withTheme: true })(EditCalendarMobile)
-);
 

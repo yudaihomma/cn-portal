@@ -1,27 +1,14 @@
 import React from 'react';
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
 import SimpleTables from '../components/SimpleTables'
 
-// Material-UIアイコン取得
-import Search from '@material-ui/icons/Search';
-
-// Redux関連
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 // import * as actions from '../actions';
 
 class Home extends React.Component {
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  // handleChange = event => {
+  //   this.setState({ [event.target.name]: event.target.value });
+  // };
 
   render() {
 

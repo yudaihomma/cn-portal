@@ -1,28 +1,30 @@
-import { Reducer } from 'redux';
-import { isType } from 'typescript-fsa';
-import { produce } from 'immer';
+import { PracticeCalendarMobileState } from '../utils/types';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { openEditCalendarMobile, closeEditCalendarMobile } from '../actions';
+import { openEditCalendarMobile, closeEditCalendarMobile, changeFocused } from '../actions';
+import moment from 'moment';
 
-type PracticeCalendarMobile = {
-  isOpen: boolean,
-  date: object,
+const initialState: PracticeCalendarMobileState = {
+  isOpen: false,
+  date: moment(),
+  focused: false,
 }
 
-const initialState: PracticeCalendarMobile[] = [];
-
-export const PracticeCalendarMobileReducer: Reducer<PracticeCalendarMobile[]> = (state = initialState, action) => {
-  if (isType(action, openEditCalendarMobile)) {
-    return produce(state, draft => {
-      draft.push({ isOpen: true, date: action.payload.date });
-    });
-  }
-  if (isType(action, closeEditCalendarMobile)) {
-    return produce(state, draft => {
-      draft.push({ isOpen: false, date: action.payload.date });
-    })
-  }
-  return state;
-};
+export const PracticeCalendarMobileReducer = reducerWithInitialState(initialState)
+  .case(openEditCalendarMobile, (state, payload) => ({
+    ...state,
+    isOpen: true,
+    date: payload,
+    focused: true,
+  }))
+  .case(closeEditCalendarMobile, (state) => ({
+    ...state,
+    isOpen: false,
+    focused: false,
+  }))
+  .case(changeFocused, (state) => ({
+    ...state,
+    focused: true,
+  }))
 
 export default PracticeCalendarMobileReducer;

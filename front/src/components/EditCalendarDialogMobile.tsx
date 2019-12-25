@@ -11,20 +11,20 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
+// import Slide from '@material-ui/core/Slide';
 
 import moment from 'moment';
 moment.locale('ja');
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+// const Transition = React.forwardRef(function Transition(props, ref) {
+//   return <Slide direction="up" ref={ref} {...props} />;
+// });
 
 interface EditCalendarDialogMobileProps {
-  classes: object,
+  classes: Record<"appBar" | "title", string>,
   isOpen: boolean,
   onClose:() => void,
-  date: string,
+  date: string | undefined,
 };
 
 type Props = EditCalendarDialogMobileProps
@@ -34,7 +34,7 @@ export const EditCalendarDialogMobile: React.FC<Props> = props =>  {
   const { classes, isOpen, onClose, date } = props;
 
   return (
-    <Dialog fullScreen open={isOpen} onClose={onClose} TransitionComponent={Transition}>
+    <Dialog fullScreen open={isOpen} onClose={onClose}>
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={onClose} aria-label="close">

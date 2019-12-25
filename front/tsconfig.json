@@ -4,7 +4,10 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "lib": ["dom", "ES2017"],
+    "lib": [
+      "dom",
+      "ES2017"
+    ],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -18,8 +21,18 @@
     "jsx": "preserve",
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"

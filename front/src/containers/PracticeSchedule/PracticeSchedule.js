@@ -13,7 +13,7 @@ import * as actions from '../../actions';
 import MediaQuery from "react-responsive";
 
 import PracticeCalendar from './desktop/PracticeCalendar'
-import PracticeCalendarMobile from './mobile/PracticeCalendarMobile'
+import {PracticeCalendarMobile} from './mobile/PracticeCalendarMobile'
 
 import moment from 'moment';
 moment.locale('ja');
