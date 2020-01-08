@@ -13,13 +13,12 @@ import Chip from '@material-ui/core/Chip';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions';
+import * as actions from '../../../actions/PracticeCalendarMobileAction';
 
 import CalendarDay from '../../../components/CalendarDay';
 
 import moment from 'moment';
 moment.locale('ja');
-
 
 // スタイル
 const styles = theme => ({

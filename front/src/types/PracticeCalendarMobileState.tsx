@@ -1,12 +1,9 @@
 import moment from 'moment'
 
-// Cardの型
+// 練習カレンダー(mobile)のウィンドウ開閉
 export type PracticeCalendarMobileState = {
     isOpen: boolean,
     date: moment.Moment | null,
     focused: boolean,
 }
 
-// CardListの型
-export type CardListState = {
-}

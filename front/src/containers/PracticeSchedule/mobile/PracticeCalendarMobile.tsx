@@ -1,20 +1,22 @@
 import React from 'react';
 
-import mockdata from '../../mockdata.json';
+// import mockdata from '../../mockdata.json';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerSingleDateController } from 'react-dates';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
+import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { openEditCalendarMobile , changeFocused } from '../../../actions';
-
+import { openEditCalendarMobile , changeFocused } from '../../../actions/PracticeCalendarMobileAction';
 import {GetPracticeCalendarMobileState} from '../../../selectors/PracticeCalendarMobileSelector'
 
 import CalendarDayMobile from '../../../components/CalendarDayMobile';
 import {EditCalendarMobile} from './EditCalendarMobile';
 
-import moment from 'moment';
+// import { getPracticeDaysMock } from '../../../actions/PracticeScheduleActions';
+import {PracticeScheduleState} from '../../../types/PracticeScheduleState'
+// import { GetPracticeScheduleState } from '../../../selectors/PracticeScheduleSelector';
 moment.locale('ja');
 
 // スタイル
@@ -38,18 +40,25 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-export const PracticeCalendarMobile: React.FC = () => {
-  const dispatch = useDispatch();
+interface PracticeCalendarMobileProps {
+    practiceData: PracticeScheduleState,
+};
 
+type Props = PracticeCalendarMobileProps
+
+export const PracticeCalendarMobile: React.FC<Props> = (props: Props) => {
+  const dispatch = useDispatch();
   const state = useSelector(GetPracticeCalendarMobileState);
+
+  const {practiceData} = props;
+
+  const classes = useStyles();
 
   // 練習日ではない日をdisabled
   const isDayBlocked = (momentDate: moment.Moment) => {
-    if (mockdata.practice_day.indexOf(momentDate.format('D')) < 0) return true
+    if (practiceData.practice_day.indexOf(momentDate.format('D')) < 0) return true
     return false
   }
-
-  const classes = useStyles();
 
   // 出席状況を描画(モバイル)
   const isDayCustomMobile = (momentDate: moment.Moment)  => {
@@ -57,13 +66,13 @@ export const PracticeCalendarMobile: React.FC = () => {
     let color: 'primary' | 'secondary' | 'default' | 'error' = "default"
     let badgeClass
 
-    if (mockdata.practice_attend.some((pa: any) => pa.practice_day === momentDate.format('D'))) {
+    if (practiceData.practice_attend.some((pa: any) => pa.practice_day === momentDate.format('D'))) {
       isPractice = true
     } else {
       isPractice = false
     }
 
-    if (mockdata.practice_attend
+    if (practiceData.practice_attend
         .filter((pa: any) => pa.practice_day === momentDate.format('D'))
         .some((pa: any) => pa.status === "1")) {
       color = "primary"

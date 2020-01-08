@@ -1,7 +1,7 @@
-import { PracticeCalendarMobileState } from '../utils/types';
+import { PracticeCalendarMobileState } from '../types/PracticeCalendarMobileState';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { openEditCalendarMobile, closeEditCalendarMobile, changeFocused } from '../actions';
+import { openEditCalendarMobile, closeEditCalendarMobile, changeFocused } from '../actions/PracticeCalendarMobileAction';
 import moment from 'moment';
 
 const initialState: PracticeCalendarMobileState = {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import Home from './containers/Home';
-import PracticeSchedule from './containers/PracticeSchedule/PracticeSchedule';
+import {PracticeSchedule} from './containers/PracticeSchedule/PracticeSchedule';
 
 import './react_dates_overrides.css'
 // Route関連
