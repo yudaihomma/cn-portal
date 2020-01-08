@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-const WrapMainContent = (WrappedComponent, options = {}) => {
+const WrapMainContent = (WrappedComponent) => {
 
   const HOC = class extends React.Component {
 
@@ -27,11 +27,8 @@ const WrapMainContent = (WrappedComponent, options = {}) => {
 
       return (
         <Scrollbars>
-
           <div className={classes.wrapper}>
-
             <WrappedComponent {...other_props} />
-
             <div className={classes.footer}>
             </div>
           </div>

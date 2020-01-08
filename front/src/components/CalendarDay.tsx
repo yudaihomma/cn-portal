@@ -1,17 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Badge from '@material-ui/core/Badge';
 
-const styles = {
-    // Cards
-    card: {
-      width: 330,
-      marginTop: 10,
-      marginBottom: 10,
-    },
-}
+interface CalendarDayProps {
+  momentDate: string,
+  isPractice: boolean,
+  clickEvent:() => void,
+  chips: any[]
+};
 
-export default function CalendarDay(props) {
+type Props = CalendarDayProps
+
+export default function CalendarDay(props: Props) {
     const { momentDate, chips, isPractice, clickEvent} = props;
     if (isPractice) {
         return (
@@ -31,10 +29,4 @@ export default function CalendarDay(props) {
         </div>
     )
 }
-
-CalendarDay.propTypes = {
-    momentDate: PropTypes.string.isRequired,
-    isPractice: PropTypes.bool.isRequired,
-    chips: PropTypes.array,
-};
 

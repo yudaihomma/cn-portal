@@ -10,26 +10,11 @@ import red from '@material-ui/core/colors/red';
 import indigo from '@material-ui/core/colors/indigo';
 
 // Redux関連
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import {store} from './reducers/store';
 
 // Router関連
 import { BrowserRouter as Router } from 'react-router-dom';
-
-// // Redux-Thunk関連（非同期データ取得用）
-// import thunk from 'redux-thunk'
-
-
-// Redux設定
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // Chromeのデバック用
-// const composeEnhancers = compose; // 本番用
-// const store = createStore(
-//   reducers,
-//   composeEnhancers(
-//     applyMiddleware(thunk),
-//   )
-// );
 
 
 // Material-UIテーマカスタマイズ

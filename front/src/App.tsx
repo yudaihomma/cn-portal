@@ -1,14 +1,14 @@
 import * as React from 'react';
 import './App.css';
-import Home from './containers/Home';
+import {Home} from './containers/Home';
 import {PracticeSchedule} from './containers/PracticeSchedule/PracticeSchedule';
 
 import './react_dates_overrides.css'
 // Route関連
 import { Route, Switch } from 'react-router-dom';
 
-import ResponsiveDrawer from './containers/ResponsiveDrawer';
-import RouteRelatedBottomNavigation from './containers/RouteRelatedBottomNavigation';
+import {ResponsiveDrawer} from './containers/ResponsiveDrawer';
+import {RouteRelatedBottomNavigation} from './containers/RouteRelatedBottomNavigation';
 
 // コンポーネント読み込み
 import WrapMainContent from './components/WrapMainContent'
@@ -25,7 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ResponsiveDrawer className="ResponsiveDrawer">
+        <ResponsiveDrawer>
           <Switch>
             <Route exact path="/" component={WrapMainContent(Home)}/>
             <Route exact path="/PracticeSchedule" component={WrapMainContent(PracticeSchedule)}/>

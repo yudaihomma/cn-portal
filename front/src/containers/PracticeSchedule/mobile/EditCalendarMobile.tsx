@@ -1,13 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { closeEditCalendarMobile } from '../../../actions';
+import { closeEditCalendar } from '../../../actions/PracticeCalendarAction';
 
-import {GetPracticeCalendarMobileState} from '../../../selectors/PracticeCalendarMobileSelector'
-
+import {GetPracticeCalendarState} from '../../../selectors/PracticeCalendarSelector'
 import {EditCalendarDialogMobile} from '../../../components/EditCalendarDialogMobile';
 
 // スタイル
@@ -26,7 +24,7 @@ export const EditCalendarMobile: React.FC = () =>  {
 
   const dispatch = useDispatch();
 
-  const state = useSelector(GetPracticeCalendarMobileState);
+  const state = useSelector(GetPracticeCalendarState);
 
   const classes = useStyles();
 
@@ -39,17 +37,8 @@ export const EditCalendarMobile: React.FC = () =>  {
     <EditCalendarDialogMobile
       classes={classes}
       isOpen={state.isOpen}
-      onClose={() => dispatch(closeEditCalendarMobile(state))}
+      onClose={() => dispatch(closeEditCalendar(state))}
       date={stringDate}
   />
   );
 }
-
-
-
-EditCalendarMobile.propTypes = {
-  date: PropTypes.object.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  classes: PropTypes.object,
-};
-

@@ -11,7 +11,6 @@ interface CalendarDayMobileProps {
 
 type Props = CalendarDayMobileProps
 
-
 // 出席状況を描画(モバイル)
 export default function CalendarDayMobile(props: Props) {
   const { momentDate, isPractice, color, classes } = props;

@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(day, branch, attendance_time) {
+function createData(day: string, branch: string, attendance_time: string) {
   return { day, branch, attendance_time};
 }
 
@@ -46,7 +46,7 @@ const rows = [
 
 ];
 
-export default function SimpleTable() {
+export const PracticeTable: React.FC = () =>  {
   const classes = useStyles();
 
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import mockdata from '../../mockdata.json';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerSingleDateController } from 'react-dates';
@@ -8,8 +7,8 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { openEditCalendarMobile , changeFocused } from '../../../actions/PracticeCalendarMobileAction';
-import {GetPracticeCalendarMobileState} from '../../../selectors/PracticeCalendarMobileSelector'
+import { openEditCalendar , changeFocused } from '../../../actions/PracticeCalendarAction';
+import {GetPracticeCalendarState} from '../../../selectors/PracticeCalendarSelector'
 
 import CalendarDayMobile from '../../../components/CalendarDayMobile';
 import {EditCalendarMobile} from './EditCalendarMobile';
@@ -48,7 +47,7 @@ type Props = PracticeCalendarMobileProps
 
 export const PracticeCalendarMobile: React.FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
-  const state = useSelector(GetPracticeCalendarMobileState);
+  const state = useSelector(GetPracticeCalendarState);
 
   const {practiceData} = props;
 
@@ -66,33 +65,33 @@ export const PracticeCalendarMobile: React.FC<Props> = (props: Props) => {
     let color: 'primary' | 'secondary' | 'default' | 'error' = "default"
     let badgeClass
 
-    if (practiceData.practice_attend.some((pa: any) => pa.practice_day === momentDate.format('D'))) {
+    if (practiceData.practice_attend.some(pa => pa.practice_day === momentDate.format('D'))) {
       isPractice = true
     } else {
       isPractice = false
     }
 
     if (practiceData.practice_attend
-        .filter((pa: any) => pa.practice_day === momentDate.format('D'))
-        .some((pa: any) => pa.status === "1")) {
+        .filter(pa => pa.practice_day === momentDate.format('D'))
+        .some(pa => pa.status === "1")) {
       color = "primary"
     } else {
       badgeClass = classes.customBadge
     }
     return (
-          <CalendarDayMobile
-          momentDate={momentDate.format('D')}
-          isPractice={isPractice}
-          color={color}
-          classes={{badge: badgeClass}}
-          />)
+      <CalendarDayMobile
+      momentDate={momentDate.format('D')}
+      isPractice={isPractice}
+      color={color}
+      classes={{badge: badgeClass}}
+      />)
   }
 
   return (
     <div>
       <DayPickerSingleDateController
         date={state.date}
-        onDateChange={(date) => dispatch(openEditCalendarMobile(date))}
+        onDateChange={(date) => dispatch(openEditCalendar(date))}
         numberOfMonths={1}
         daySize={40}
         isDayBlocked={isDayBlocked}

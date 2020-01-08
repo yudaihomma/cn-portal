@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
@@ -10,11 +9,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 
 // Route関連
-import { Link, withRouter } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 // スタイル
-const styles = theme => ({
+const useStyles = makeStyles((theme: Theme) =>
+ createStyles({
   wrapper:{
     display: 'block',
     width: '100%',
@@ -32,54 +31,36 @@ const styles = theme => ({
   button: {
     maxWidth: '100%', // ボタンが横一杯に広がって欲しくない時はコメントアウト
   },
-});
+}));
 
 
-
-
-class RouteRelatedBottomNavigation extends React.Component {
-  buttons_info = [
+export const RouteRelatedBottomNavigation: React.FC = () => {
+  const classes = useStyles();
+  const buttons_info = [
     { label: 'トップページ', icon: <HomeIcon />, link_to: '/'},
     { label: 'サイトマップ', icon: <InfoIcon />, link_to: '/info'},
   ];
-  
-  buttons = this.buttons_info.map( (button_info, index) => {
+
+  const buttons = buttons_info.map( (button_info) => {
       return (
         <BottomNavigationAction
           value={button_info.link_to}
           label={button_info.label}
-          className={this.props.classes.button}
+          className={classes.button}
           icon={button_info.icon}
           component={Link}
           to={button_info.link_to}
         />
       );
     })
-  
-  render() {
-    // Material-ui関連
-    const { classes } = this.props;
-    
-    return (
-      <div className={classes.wrapper}>
-        <BottomNavigation
-          value={this.props.location.pathname}
-          showLabels
-          className={classes.root}
-          children={this.buttons}
-        />
-      </div>
-    );
-  }
+
+  return (
+    <div className={classes.wrapper}>
+      <BottomNavigation
+        showLabels
+        className={classes.root}
+        children={buttons}
+      />
+    </div>
+  );
 }
-
-// Material-ui関連
-RouteRelatedBottomNavigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-
-// Material-uiのテーマ設定＋Redux設定＋React-Router情報取得
-export default withRouter(
-  withStyles(styles, { withTheme: true })(RouteRelatedBottomNavigation)
-);

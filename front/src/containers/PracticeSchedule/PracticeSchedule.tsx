@@ -9,13 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { GetPracticeScheduleState } from '../../selectors/PracticeScheduleSelector';
 
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import {getPracticeDaysMock} from '../../actions/PracticeScheduleActions';
 
 import MediaQuery from "react-responsive";
 
-import PracticeCalendar from './desktop/PracticeCalendar'
+import {PracticeCalendar} from './desktop/PracticeCalendar'
 import {PracticeCalendarMobile} from './mobile/PracticeCalendarMobile'
 
 import moment from 'moment';
@@ -55,7 +53,8 @@ export const PracticeSchedule: React.FC = () => {
         practiceData={state}/>
       </MediaQuery>
       <MediaQuery query="(min-width: 767px)">
-        <PracticeCalendar/>
+        <PracticeCalendar
+        practiceData={state}/>
       </MediaQuery>
     </div>
   );
