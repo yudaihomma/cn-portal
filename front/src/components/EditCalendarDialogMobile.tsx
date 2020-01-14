@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 // import Slide from '@material-ui/core/Slide';
+import PracticeTimePickMobile from './PracticeTimePickMobile'
 
 import moment from 'moment';
 moment.locale('ja');
@@ -53,8 +54,8 @@ export const EditCalendarDialogMobile: React.FC<Props> = props =>  {
           <ListItemText primary={date} />
         </ListItem>
         <Divider />
-        <ListItem button>
-          <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+        <ListItem>
+          <PracticeTimePickMobile/>
         </ListItem>
       </List>
     </Dialog>

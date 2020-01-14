@@ -9,7 +9,8 @@ export type PracticeScheduleState = {
 export type PracticeAttend = {
     practice_day: string,
     branch: string,
-    attend_time: string,
+    attend_start: number,
+    attend_end: number,
     status: string,
 }
 

@@ -7,37 +7,43 @@
     {
       "practice_day": "1",
       "branch": "関西",
-      "attend_time": "10:00-14:00",
+      "attend_start": 10,
+      "attend_end": 14,
       "status": "1"
     },
     {
       "practice_day": "1",
       "branch": "関西",
-      "attend_time": "18:00-22:00",
+      "attend_start": 18,
+      "attend_end": 22,
       "status": "1"
     },
     {
       "practice_day": "7",
       "branch": "関西",
-      "attend_time": "10:00-22:00",
+      "attend_start": 10,
+      "attend_end": 22,
       "status": "1"
     },
     {
       "practice_day": "8",
       "branch": "関西",
-      "attend_time": "10:00-22:00",
+      "attend_start": 10,
+      "attend_end": 22,
       "status": "2"
     },
     {
       "practice_day": "22",
       "branch": "関東",
-      "attend_time": "10:00-22:00",
+      "attend_start": 10,
+      "attend_end": 22,
       "status": "1"
     },
     {
       "practice_day": "29",
       "branch": "関西",
-      "attend_time": "10:00-16:00",
+      "attend_start": 10,
+      "attend_end": 16,
       "status": "1"
     }
   ]
