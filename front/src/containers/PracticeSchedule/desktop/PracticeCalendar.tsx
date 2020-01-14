@@ -17,6 +17,8 @@ import {PracticeScheduleState} from '../../../types/PracticeScheduleState'
 
 import CalendarDay from '../../../components/CalendarDay';
 
+import {attendShaping} from '../../../utils/PracticeCalendarUtils'
+
 import moment from 'moment';
 moment.locale('ja');
 
@@ -78,7 +80,7 @@ export const PracticeCalendar: React.FC<Props> = (props: Props) => {
       <Chip
         className={classes.labels}
         size="small"
-        label={at.attend_time}
+        label={attendShaping(at)}
         color={color}
       />)
     });
