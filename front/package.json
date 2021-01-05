@@ -12,7 +12,7 @@
     "@types/react-dates": "^17.1.7",
     "@types/react-responsive": "^8.0.2",
     "@types/reselect": "^2.2.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "json-loader": "^0.5.7",
     "moment": "^2.24.0",
     "react": "^16.12.0",
